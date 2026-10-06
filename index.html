@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Haystack: hide and seek with the whole city</title>
+<meta name="description" content="Haystack is an iPhone game of hide and seek across a whole city. Seekers ask questions, every answer shades out part of a live map, and they close in until they find the hider.">
+<meta property="og:title" content="Haystack">
+<meta property="og:description" content="Hide and seek with the whole city. Now in beta on iPhone.">
+<meta property="og:image" content="img/icon-512.png">
+<link rel="icon" href="favicon.png">
+<link rel="apple-touch-icon" href="img/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FBF7EF;
+    --cream-2: #F6F0E6;
+    --cream-3: #EADFCF;
+    --paper: #FFFFFF;
+    --plum: #2A1F2D;
+    --plum-2: #6A5E68;
+    --plum-3: #766A73;
+    --hair: #E2D6C2;
+    --blue: #3255A4;
+    --blue-press: #284A92;
+    --blue-tint: #DDE4F4;
+    --red: #F15060;
+    --red-ink: #BE2D3A;
+    --red-tint: #FFDDE1;
+    --sun: #FFB511;
+    --sun-ink: #7A5C14;
+    --sun-tint: #FFF4D9;
+    --teal: #00838A;
+    --teal-tint: #D2ECE8;
+    --shadow: 0 1px 2px rgba(42,31,45,.06), 0 12px 32px rgba(42,31,45,.10);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --cream: #1C151E; --cream-2: #261D29; --cream-3: #31263A; --paper: #261D29;
+      --plum: #F4ECDA; --plum-2: #B9ACB6; --plum-3: #A396A0; --hair: #43354A;
+      --blue: #7D9BE8; --blue-press: #6A8AD9; --blue-tint: #26304D;
+      --red: #FF7A86; --red-ink: #FF7A86; --red-tint: #4A2730;
+      --sun: #FFC23D; --sun-ink: #FFC23D; --sun-tint: #3A2E17;
+      --teal: #2BB3B0; --teal-tint: #173634;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 32px rgba(0,0,0,.35);
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--plum);
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-variation-settings: "wdth" 100, "opsz" 16;
+    font-size: 17px;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  .display {
+    font-weight: 800;
+    font-variation-settings: "wdth" 92, "opsz" 48;
+    letter-spacing: -0.02em;
+    line-height: 1.02;
+    margin: 0;
+  }
+
+  /* Header */
+  header { padding: 20px 0; }
+  .bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .brand img { width: 36px; height: 36px; border-radius: 9px; border: 1px solid var(--hair); }
+  .wordmark { font-weight: 800; font-variation-settings: "wdth" 92, "opsz" 48; font-size: 26px; letter-spacing: -0.03em; }
+  .wordmark i { color: var(--sun); font-style: normal; }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: 52px; padding: 0 26px; border-radius: 14px;
+    font: inherit; font-weight: 700; font-size: 17px; text-decoration: none;
+    border: 1.5px solid transparent; cursor: pointer;
+    transition: background-color .15s ease, transform .15s ease;
+  }
+  .btn:active { transform: scale(.98); }
+  .btn-primary { background: var(--blue); color: #fff; }
+  .btn-primary:hover { background: var(--blue-press); }
+  .btn-ghost { background: var(--paper); color: var(--plum); border-color: var(--plum); }
+  .btn-small { min-height: 40px; padding: 0 16px; font-size: 15px; border-radius: 11px; }
+
+  /* Hero */
+  .hero { padding: 40px 0 72px; }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 48px; align-items: center; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 12px; border-radius: 999px;
+    background: var(--sun-tint); color: var(--sun-ink);
+    font-size: 14px; font-weight: 600;
+  }
+  .pill::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--sun); }
+  .hero h1 { font-size: clamp(48px, 7.4vw, 92px); margin: 18px 0 20px; }
+  .hero h1 em { font-style: normal; color: var(--blue); }
+  .lede { font-size: 20px; color: var(--plum-2); max-width: 30em; margin: 0 0 32px; }
+  .ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+
+  .phones { position: relative; height: 620px; }
+  .phone {
+    position: absolute; width: 280px; border-radius: 38px; overflow: hidden;
+    background: var(--paper); border: 8px solid var(--plum); box-shadow: var(--shadow);
+  }
+  .phone img { width: 100%; height: auto; }
+  .phones .one { right: 150px; top: 40px; transform: rotate(-3deg); z-index: 1; }
+  .phones .two { right: 0; top: 0; transform: rotate(3deg); z-index: 2; }
+  .meeple { position: absolute; z-index: 3; width: 64px; height: 64px; filter: drop-shadow(0 6px 10px rgba(42,31,45,.18)); }
+  .phones .m1 { left: 4px; bottom: 56px; }
+
+  /* Steps */
+  section { padding: 72px 0; }
+  .section-head { max-width: 640px; margin-bottom: 40px; }
+  .section-head h2 { font-size: clamp(36px, 5vw, 56px); margin-bottom: 14px; }
+  .section-head p { color: var(--plum-2); font-size: 19px; margin: 0; }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .card {
+    background: var(--paper); border: 1px solid var(--hair); border-radius: 18px; padding: 26px;
+  }
+  .card .num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 48px; height: 48px; border-radius: 50%; margin-bottom: 18px;
+  }
+  .card .num svg { width: 30px; height: 30px; }
+  .card h3 { font-size: 26px; margin: 0 0 8px; }
+  .card p { margin: 0; color: var(--plum-2); }
+  .t-red { background: var(--red-tint); }
+  .t-blue { background: var(--blue-tint); }
+  .t-sun { background: var(--sun-tint); }
+  .t-teal { background: var(--teal-tint); }
+
+  /* Screens */
+  .screens { background: var(--cream-2); border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair); }
+  .shots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .shot .phone { position: static; width: 100%; border-width: 6px; border-radius: 30px; }
+  .shot figcaption { margin-top: 16px; }
+  .shot b { display: block; font-size: 18px; }
+  .shot span { color: var(--plum-2); font-size: 15px; }
+
+  /* Questions */
+  .qs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .q { background: var(--paper); border: 1px solid var(--hair); border-radius: 14px; padding: 18px; border-top: 4px solid var(--c); }
+  .q b { display: block; font-size: 18px; margin-bottom: 4px; }
+  .q span { color: var(--plum-2); font-size: 15px; }
+
+  /* Features */
+  .feats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .feat { display: flex; gap: 18px; align-items: flex-start; }
+  .feat .num { flex: none; margin: 0; }
+  .feat h3 { font-size: 22px; }
+
+  /* Beta */
+  .beta { padding: 24px 0 88px; }
+  .beta-card {
+    background: var(--plum); color: var(--cream); border-radius: 24px; padding: 48px;
+    display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center;
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .beta-card { background: var(--cream-3); color: var(--plum); } }
+  .beta-card h2 { font-size: clamp(34px, 4.6vw, 52px); margin-bottom: 12px; }
+  .beta-card p { margin: 0; opacity: .82; font-size: 19px; max-width: 34em; }
+  .beta-card .btn-primary { background: var(--sun); color: #2A1F2D; }
+  .beta-card .btn-primary:hover { background: #F2AA00; }
+
+  footer { border-top: 1px solid var(--hair); padding: 28px 0 40px; color: var(--plum-3); font-size: 14px; }
+  footer .bar { flex-wrap: wrap; }
+
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 24px; }
+    .phones { height: 520px; max-width: 460px; margin: 0 auto; width: 100%; }
+    .phone { width: 230px; }
+    .phones .one { right: auto; left: 0; }
+    .phones .m1 { left: auto; right: 0; bottom: 8px; }
+    .steps { grid-template-columns: 1fr; }
+    .shots { grid-template-columns: repeat(2, 1fr); }
+    .qs { grid-template-columns: repeat(2, 1fr); }
+    .feats { grid-template-columns: 1fr; }
+    .beta-card { grid-template-columns: 1fr; padding: 32px; }
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 0 16px; }
+    .phones { height: 430px; }
+    .phone { width: 190px; border-width: 6px; border-radius: 30px; }
+    .phones .one { top: 30px; }
+    .meeple { width: 48px; height: 48px; }
+    section { padding: 56px 0; }
+    .shots { gap: 16px; }
+    .header-cta { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <path id="meeple" d="M12 1.8a4.1 4.1 0 0 1 4.1 4.1c0 1.2-.5 2.3-1.3 3.1h5c1.8 0 2.7 1.4 2 2.6l-1.2 2.3c-.4.8-1.2 1.2-2.1 1.2h-2.2l2.3 6.6c.3.8-.3 1.6-1.2 1.6h-3.3L12 18.6l-2.1 4.7H6.6c-.9 0-1.5-.8-1.2-1.6l2.3-6.6H5.5c-.9 0-1.7-.4-2.1-1.2l-1.2-2.3c-.7-1.2.2-2.6 2-2.6h5c-.8-.8-1.3-1.9-1.3-3.1A4.1 4.1 0 0 1 12 1.8z"/>
+  </defs>
+</svg>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#" aria-label="Haystack home">
+      <img src="img/icon.png" alt="">
+      <span class="wordmark">haystack<i>.</i></span>
+    </a>
+    <a class="btn btn-ghost btn-small header-cta" href="#beta">Join the beta</a>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="pill">Now in beta on iPhone</span>
+        <h1 class="display">Hide and seek with the <em>whole city.</em></h1>
+        <p class="lede">One team hides somewhere in town. The seekers ask questions, every answer shades out part of a live map, and they close in until they find you.</p>
+        <div class="ctas">
+          <a class="btn btn-primary" href="#beta">Join the beta</a>
+          <a class="btn btn-ghost" href="#how">How it plays</a>
+        </div>
+      </div>
+      <div class="phones" aria-hidden="true">
+        <div class="phone one"><img src="img/questions.jpg" alt=""></div>
+        <div class="phone two"><img src="img/map.jpg" alt=""></div>
+        <svg class="meeple m1" viewBox="0 0 24 24"><use href="#meeple" fill="#FFB511" stroke="#2A1F2D" stroke-width="1.3" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <section id="how">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="display">How it plays</h2>
+        <p>A game takes an afternoon and a transit pass. Everyone plays from their own phone.</p>
+      </div>
+      <div class="steps">
+        <div class="card">
+          <div class="num t-red"><svg viewBox="0 0 24 24"><use href="#meeple" fill="#F15060" stroke="#2A1F2D" stroke-width="1.3" stroke-linejoin="round"/></svg></div>
+          <h3 class="display">Hide</h3>
+          <p>The hiders get a head start to pick a station and find a spot near it. Then they settle in and answer honestly.</p>
+        </div>
+        <div class="card">
+          <div class="num t-blue"><svg viewBox="0 0 24 24"><use href="#meeple" fill="#3255A4" stroke="#2A1F2D" stroke-width="1.3" stroke-linejoin="round"/></svg></div>
+          <h3 class="display">Ask</h3>
+          <p>Seekers spend credits on questions. “Are you within 1 km?” “North or south of me?” The app checks every answer.</p>
+        </div>
+        <div class="card">
+          <div class="num t-sun"><svg viewBox="0 0 24 24"><use href="#meeple" fill="#FFB511" stroke="#2A1F2D" stroke-width="1.3" stroke-linejoin="round"/></svg></div>
+          <h3 class="display">Close in</h3>
+          <p>Each answer shades out part of the map. Ride the subway toward what's left and catch them before time runs out.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="screens">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="display">A real map, a real game</h2>
+        <p>Built on OpenStreetMap, with your city's real stations, parks and rivers.</p>
+      </div>
+      <div class="shots">
+        <figure class="shot" style="margin:0">
+          <div class="phone"><img src="img/map.jpg" alt="The seekers' map with ruled-out areas shaded" loading="lazy"></div>
+          <figcaption><b>The map shrinks</b><span>Ruled-out areas are shaded for everyone on the team.</span></figcaption>
+        </figure>
+        <figure class="shot" style="margin:0">
+          <div class="phone"><img src="img/questions.jpg" alt="The question picker showing Ping, Bearing, Warmer and Divide" loading="lazy"></div>
+          <figcaption><b>Pick your question</b><span>Each kind costs credits and cuts the map a different way.</span></figcaption>
+        </figure>
+        <figure class="shot" style="margin:0">
+          <div class="phone"><img src="img/cards.jpg" alt="The hider choosing one of two drawn cards" loading="lazy"></div>
+          <figcaption><b>Hiders fight back</b><span>Answering draws cards: block a question, freeze the seekers, buy time.</span></figcaption>
+        </figure>
+        <figure class="shot" style="margin:0">
+          <div class="phone"><img src="img/welcome.jpg" alt="The welcome screen" loading="lazy"></div>
+          <figcaption><b>Start in a minute</b><span>Share a game code, pick sides, and go.</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="display">Questions that cut the map</h2>
+        <p>Every question rules out a different shape, so picking the right one is the game.</p>
+      </div>
+      <div class="qs">
+        <div class="q" style="--c:var(--red)"><b>Ping</b><span>Are they within a set distance of you?</span></div>
+        <div class="q" style="--c:var(--blue)"><b>Bearing</b><span>Are they north or south of you, or east or west?</span></div>
+        <div class="q" style="--c:var(--sun)"><b>Warmer</b><span>Walk a bit. Are you closer than before?</span></div>
+        <div class="q" style="--c:var(--teal)"><b>Divide</b><span>Which side of a river, avenue or line are they on?</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap feats">
+      <div class="card feat">
+        <div class="num t-teal"><svg viewBox="0 0 24 24" fill="none" stroke="#00838A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <div><h3 class="display">Fair by design</h3><p>Most answers come straight from the hider's real location, so nobody has to take anyone's word for it. And the seekers never see the hider on the map.</p></div>
+      </div>
+      <div class="card feat">
+        <div class="num t-red"><svg viewBox="0 0 24 24" fill="none" stroke="#BE2D3A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg></div>
+        <div><h3 class="display">Safe to play</h3><p>Highways, rail lines and water are off-limits, hosts can add their own zones, and a safety button is always one tap away.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="beta" id="beta">
+    <div class="wrap">
+      <div class="beta-card">
+        <div>
+          <h2 class="display">Play the beta</h2>
+          <p>Haystack is in beta on TestFlight, with playtests running in New York. A public invite link is coming soon. Check back here for it.</p>
+        </div>
+        <a class="btn btn-primary" href="#how">See how it plays</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap bar">
+    <span>© 2026 Haystack</span>
+    <span>Map data © OpenStreetMap contributors</span>
+  </div>
+</footer>
+
+</body>
+</html>
