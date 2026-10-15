@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy · Haystack</title>
+<link rel="icon" href="../favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#FBF7EF;--plum:#2A1F2D;--plum-2:#6A5E68;--hair:#E2D6C2;--blue:#3255A4;--sun:#FFB511;--paper:#FFFFFF}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--cream:#1C151E;--plum:#F4ECDA;--plum-2:#B9ACB6;--hair:#43354A;--blue:#7D9BE8;--sun:#FFC23D;--paper:#261D29}}
+:root[data-theme="dark"]{--cream:#1C151E;--plum:#F4ECDA;--plum-2:#B9ACB6;--hair:#43354A;--blue:#7D9BE8;--sun:#FFC23D;--paper:#261D29}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--cream);color:var(--plum);font-family:"Bricolage Grotesque",system-ui,sans-serif;font-size:17px;line-height:1.6}
+.wrap{max-width:720px;margin:0 auto;padding:0 16px 64px}
+header{padding:20px 0 8px}header a{text-decoration:none;font-weight:800;font-size:24px;letter-spacing:-.03em}header i{color:var(--sun);font-style:normal}
+nav{display:flex;gap:16px;flex-wrap:wrap;margin:8px 0 24px;font-size:15px}nav a{color:var(--plum-2)}nav a[aria-current]{color:var(--plum);font-weight:700}
+h1{font-size:clamp(32px,6vw,44px);line-height:1.1;letter-spacing:-.02em;margin:16px 0 8px}
+h2{font-size:22px;margin:32px 0 8px}
+a{color:var(--blue)}em{color:var(--plum-2)}
+table{width:100%;border-collapse:collapse;font-size:15px;display:block;overflow-x:auto}
+th,td{text-align:left;vertical-align:top;padding:8px 10px;border-bottom:1px solid var(--hair)}
+footer{margin-top:48px;color:var(--plum-2);font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><a href="../">haystack<i>.</i></a></header>
+<nav><a href="../privacy/" aria-current="page">Privacy Policy</a><a href="../terms/">Terms of Service</a><a href="../safety/">Safety</a></nav>
+<main>
+<h1>Privacy Policy</h1>
+<p><em>Last updated October 15, 2026</em></p>
+<p>Haystack needs your location to work, so we have tried to collect as little as possible, keep it for as short a time as possible, and never let it reach anyone who should not see it. Here is exactly what happens.</p>
+<h2>Our four promises</h2>
+<ol>
+<li><p>Your location is only tracked while a game you are in is running: from the head start until the game ends. Nothing is tracked in the lobby, between games, or when you are not in a game. When you host a game or start a practice game, your current position is sent once to center the play area. A host can then move the center.</p>
+</li>
+<li><p>During a game, seekers never see the hider&#39;s location, only the answers to their questions. The two exceptions are a Snapshot photo, which the hider takes and sends, and the panic button (see below). The hiders do see the seekers&#39; positions while they search, unless the host turns that off. When the game ends, its players can see a replay with everyone&#39;s route.</p>
+</li>
+<li><p>Location data is deleted 30 days after the game. Game photos, in every mode, are deleted once all players have left the recap, or 24 hours after the game ends, whichever comes first. The recap lets you save them to your phone before then.</p>
+</li>
+<li><p>We do not sell your data, we do not use it for advertising, and there are no ad or usage-analytics SDKs in the app. The one reporting tool is crash reporting, described below.</p>
+</li>
+</ol>
+<h2>What we collect</h2>
+<p><strong>Account.</strong> A random user ID, your display name and color. If you save your account with Sign in with Apple: the identifier Apple gives us for you, the email address Apple shares (a private relay address if you choose Hide My Email), and, the first time only, your name if you share it. Guests share none of these.</p>
+<p><strong>Location during games.</strong> Each position your phone reports, with its accuracy, speed and time, and whether the phone says the position was simulated. The app keeps sending positions while it is in the background or your phone is in your pocket, because a game does not stop when the screen turns off. iOS shows the location indicator while it does. Positions are used to answer questions, check catches, enforce the play area and off-limits zones, detect cheating and draw the replay.</p>
+<p><strong>Other positions in a game.</strong> The play area&#39;s center (your position when you host, unless you move it) and the off-limits circles the host draws. The hider&#39;s Nest (the spot they hide around). Where each seeker stood when they asked a question, and where the hider was when it was answered. The starting point of a Warmer/Colder question. Your position if you press panic.</p>
+<p><strong>Game data.</strong> The games you joined, questions asked and answered, the hider&#39;s cards, scores, and Snapshot photos. Snapshot photos are taken with the in-app camera when a seeker asks for one. The recap can save the game&#39;s photos to your phone. The app only adds photos to Photos and never reads your photo library.</p>
+<p><strong>Purchases.</strong> Purchases are switched off for now, so we collect nothing about them. If paid passes come back, we will record which pass you bought, whether it is active and when it expires, as reported by RevenueCat. We never see your payment details.</p>
+<p><strong>Push token.</strong> If you allow notifications, your phone gets a token (an address for sending to it) from Apple and Expo. We save it to your profile so we can send game notifications, such as a question or an answer. We use it for nothing else. If you do not allow notifications, there is no token.</p>
+<p><strong>Crash reports.</strong> If the app crashes or hits an error, it sends a report to Sentry: what went wrong, the app and iOS versions, the phone model, the screen you were on and the last few steps before the error. About 1 in 10 sessions also sends screen-load timings. Reports carry your random user ID, so we can tell whether an error is one phone or many. They do not carry your name or email. Locations and request contents are stripped out before anything leaves your phone, and the app sends no screenshots or screen recordings.</p>
+<p><strong>Safety.</strong> That you accepted a game&#39;s safety briefing, and when. Which players a host removed from a lobby.</p>
+<p>We do not collect your contacts, your photo library, advertising identifiers, or usage analytics.</p>
+<h2>Who sees what</h2>
+<p><strong>Seekers in the same game</strong> see each other&#39;s latest position on the map. <strong>Hiders</strong> see the seekers&#39; latest positions from the end of the head start until the game ends, unless the host turns this off when setting up the game or the seekers buy Go Dark, which hides them for 15 minutes. <strong>Seekers</strong> never see the hider&#39;s position during the game. The server computes each answer and sends seekers only the result, for example &quot;within 1 km: yes&quot;, or &quot;closer to the nearest park than you&quot;. A Snapshot photo goes to the seekers in that game.</p>
+<p><strong>Panic.</strong> If anyone presses panic, the game ends for everyone. That player&#39;s location is shown to every player in the game, the hider included, and their app can update it for up to 30 minutes afterwards. It stays visible to those players in the game&#39;s recap until it is deleted with the rest of the game&#39;s location data.</p>
+<p><strong>After the game.</strong> The players in that game can see a replay: everyone&#39;s route, the Nest, where each question was asked and where the hider was when it was answered, and the hider&#39;s cards.</p>
+<p><strong>Other players</strong> see your display name and color in the games you share. Nobody outside a game can see anything about it.</p>
+<h2>How it is used</h2>
+<p>Only to run the game. That covers computing answers on our servers, keeping time, sending game notifications, showing replays to the players of that game, preventing cheating and abuse, and providing support. Where the GDPR applies, we process this data because it is necessary to provide the game you asked for (contract), and to keep players safe and the game fair (legitimate interests).</p>
+<h2>Who we share it with</h2>
+<p>These service providers run Haystack on our behalf and may only use the data to provide their service to us:</p>
+<ul>
+<li><strong>Supabase</strong>: our database, sign-in, file storage and servers. Everything above is stored there.</li>
+<li><strong>Apple</strong>: Sign in with Apple, if you use it. Apple confirms who you are to us; we never see your Apple ID password.</li>
+<li><strong>Expo and Apple Push Notification service (or Google&#39;s Firebase Cloud Messaging on Android)</strong>: deliver game notifications. They receive your push token and the notification text, which can include a player&#39;s display name (for example &quot;Sam pressed panic&quot;).</li>
+<li><strong>Sentry</strong>: receives crash reports (see What we collect). It gets your random user ID, but no locations, name or email.</li>
+<li><strong>RevenueCat</strong>: only if paid passes come back. It would process purchases with Apple and Google and receive your random user ID and purchase details, but not your location or game data.</li>
+<li><strong>Our basemap provider, currently OpenFreeMap</strong>: serves the map tiles and labels your phone displays. Like any website, it sees your IP address and the map area you are looking at, but not who you are or anything about your game.</li>
+</ul>
+<p><strong>OpenStreetMap.</strong> When a game starts, our server asks the public OpenStreetMap Overpass service for the rivers, railways, roads, stations, parks and similar places in a box around the play area. The request carries only that box. It never includes who is playing, any player&#39;s position, or anything from your phone. Your phone does not contact Overpass. Map data © OpenStreetMap contributors, available under the Open Database License.</p>
+<p>We disclose data if the law requires it. We do not sell or rent personal data, and we do not share it for advertising.</p>
+<h2>How long we keep it</h2>
+<table>
+<thead>
+<tr>
+<th>Data</th>
+<th>How long</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Location points from a game</td>
+<td>An hour after the game ends we thin them to about one every 30 seconds for the replay. Deleted 30 days after the game ends, or 30 days after they were recorded if that is sooner</td>
+</tr>
+<tr>
+<td>Other positions in a game (play-area center, Nest, where questions were asked and answered, Warmer/Colder start, panic location, Ghost&#39;s route)</td>
+<td>Deleted 30 days after the game ends</td>
+</tr>
+<tr>
+<td>Snapshot photos</td>
+<td>Game photos in every mode. Deleted once all players have left the recap, or 24 hours after the game ends.</td>
+</tr>
+<tr>
+<td>Map data loaded for a game (OpenStreetMap places and zones)</td>
+<td>Deleted 2 days after the game ends</td>
+</tr>
+<tr>
+<td>Host-drawn off-limits circles</td>
+<td>Deleted 30 days after the game ends</td>
+</tr>
+<tr>
+<td>Game results (who played, questions and answers without positions, scores, cards)</td>
+<td>Kept so players&#39; history and recaps work. A deleted account is removed from them</td>
+</tr>
+<tr>
+<td>Profile, push token, purchase status</td>
+<td>Until you delete your account</td>
+</tr>
+<tr>
+<td>Crash reports (held by Sentry)</td>
+<td>Up to 90 days, then Sentry deletes them. Deleting your account does not remove reports already sent, which carry only your random ID</td>
+</tr>
+</tbody></table>
+<p>Once the 30 days are up, a game&#39;s recap still shows the play area and the shaded map, but no routes, Nest or positions.</p>
+<h2>Deleting your account</h2>
+<p>You can delete your account at any time in Settings → Delete account. This takes effect immediately.</p>
+<ul>
+<li><strong>Deleted:</strong> your profile, your email address, our access to your Apple ID, your push token, your location history, your Snapshot photos, your place in every game.</li>
+<li><strong>Games:</strong> a game in which you are the hider ends, and so do lobbies you host and your practice games. Other live games carry on without you. If you were the host, the next player to have joined becomes the host. Finished games stay in other players&#39; history without you. Questions you asked remain, but are no longer linked to you.</li>
+</ul>
+<p>Deleted data is removed from our live systems straight away and from backups within 30 days.</p>
+<h2>Your choices and rights</h2>
+<p>You can:</p>
+<ul>
+<li>play as a guest, without signing in</li>
+<li>decline notifications</li>
+<li>refuse or turn off location (games ask again when they need it)</li>
+<li>use Demo location in practice games instead of your real position (games with other people always use your real location)</li>
+<li>edit your name and color</li>
+<li>delete your account at any time</li>
+</ul>
+<p>Depending on where you live (for example under the GDPR, UK GDPR or CCPA) you may have rights to access, correct, export or delete your data, and to object to or restrict processing. Email <a href="mailto:haystackapp.help@gmail.com">haystackapp.help@gmail.com</a> and we will respond within 30 days. You can also complain to your local data protection authority.</p>
+<h2>Children</h2>
+<p>Haystack is for people aged 18 and over, and asks you to confirm your age before you play. We do not knowingly collect data from anyone younger. If you think a child is using Haystack, email us and we will delete the account.</p>
+<h2>Contact</h2>
+<p>Haystack, <a href="mailto:haystackapp.help@gmail.com">haystackapp.help@gmail.com</a>. We will tell you in the app before any material change to this policy.</p>
+
+</main>
+<footer>© 2026 Haystack</footer>
+</div>
+</body>
+</html>
