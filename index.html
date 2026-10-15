@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Haystack: hide and seek with the whole city</title>
-<meta name="description" content="Haystack is an iPhone game of hide and seek across a whole city. Seekers ask questions, every answer shades out part of a live map, and they close in until they find the hider.">
+<title>Haystack: games for the whole city</title>
+<meta name="description" content="Haystack is an iPhone app of outdoor games you play with friends across a city. Race a rival team up Manhattan or across San Francisco, or find the Traitor in your own group.">
 <meta property="og:title" content="Haystack">
-<meta property="og:description" content="Hide and seek with the whole city. Now in beta on iPhone.">
+<meta property="og:description" content="Outdoor games for the whole city. Now in beta on iPhone.">
 <meta property="og:image" content="img/icon-512.png">
 <link rel="icon" href="favicon.png">
 <link rel="apple-touch-icon" href="img/icon.png">
@@ -195,6 +195,30 @@
     .shots { gap: 16px; }
     .header-cta { display: none; }
   }
+
+  /* Games */
+  .art { display: block; width: 100%; aspect-ratio: 4 / 3; border-radius: 18px; overflow: hidden; border: 1px solid var(--hair); background: #F6EFE2; }
+  .art img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-art { position: relative; height: 520px; }
+  .hero-art .art { position: absolute; width: 78%; box-shadow: var(--shadow); border: 6px solid var(--paper); border-radius: 24px; }
+  .hero-art .a1 { left: 0; top: 0; transform: rotate(-3deg); z-index: 1; }
+  .hero-art .a2 { right: 0; bottom: 0; transform: rotate(3deg); z-index: 2; }
+  .games { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .game { background: var(--paper); border: 1px solid var(--hair); border-radius: 22px; padding: 16px 16px 28px; }
+  .game .art { margin-bottom: 22px; }
+  .game h3 { font-size: 34px; margin: 0 10px 6px; }
+  .game .facts { margin: 0 10px 14px; color: var(--plum-2); font-weight: 600; font-size: 15px; }
+  .game > p { margin: 0 10px 16px; font-size: 18px; }
+  .game ol { margin: 0 10px; padding-left: 22px; color: var(--plum-2); }
+  .game li { margin: 6px 0; }
+  .footer-links { display: flex; gap: 16px; flex-wrap: wrap; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .art { background: #2A2230; } }
+  @media (max-width: 900px) {
+    .hero-art { height: auto; display: grid; gap: 16px; }
+    .hero-art .art { position: static; width: 100%; transform: none; }
+    .hero-art .a2 { display: none; }
+    .games { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -211,7 +235,7 @@
       <img src="img/icon.png" alt="">
       <span class="wordmark">haystack<i>.</i></span>
     </a>
-    <a class="btn btn-ghost btn-small header-cta" href="#beta">Join the beta</a>
+    <a class="btn btn-ghost btn-small header-cta" href="https://testflight.apple.com/join/wmPnb9gT">Join the beta</a>
   </div>
 </header>
 
@@ -220,84 +244,51 @@
     <div class="wrap hero-grid">
       <div>
         <span class="pill">Now in beta on iPhone</span>
-        <h1 class="display">Hide and seek with the <em>whole city.</em></h1>
-        <p class="lede">One team hides somewhere in town. The seekers ask questions, every answer shades out part of a live map, and they close in until they find you.</p>
+        <h1 class="display">Games for the <em>whole city.</em></h1>
+        <p class="lede">Get a group together, head outside, and play. Race a rival team across town, or find out who in your group is working against you.</p>
         <div class="ctas">
-          <a class="btn btn-primary" href="#beta">Join the beta</a>
-          <a class="btn btn-ghost" href="#how">How it plays</a>
+          <a class="btn btn-primary" href="https://testflight.apple.com/join/wmPnb9gT">Join the beta</a>
+          <a class="btn btn-ghost" href="#games">See the games</a>
         </div>
       </div>
-      <div class="phones" aria-hidden="true">
-        <div class="phone one"><img src="img/questions.jpg" alt=""></div>
-        <div class="phone two"><img src="img/map.jpg" alt=""></div>
+      <div class="hero-art" aria-hidden="true">
+        <picture class="art a1"><source srcset="img/art/uptown-dark.svg" media="(prefers-color-scheme: dark)"><img src="img/art/uptown-light.svg" alt=""></picture>
+        <picture class="art a2"><source srcset="img/art/turncoat-dark.svg" media="(prefers-color-scheme: dark)"><img src="img/art/turncoat-light.svg" alt=""></picture>
       </div>
     </div>
   </div>
 
-  <section id="how">
+  <section id="games">
     <div class="wrap">
       <div class="section-head">
-        <h2 class="display">How it plays</h2>
-        <p>A game takes an afternoon and a transit pass. Everyone plays from their own phone.</p>
+        <h2 class="display">Two games to start</h2>
+        <p>Each one takes an afternoon. Everyone plays from their own phone.</p>
       </div>
-      <div class="steps">
-        <div class="card">
-          <div class="num t-red"><svg viewBox="0 0 24 24"><use href="#meeple" fill="#F15060" stroke="#2A1F2D" stroke-width="1.3" stroke-linejoin="round"/></svg></div>
-          <h3 class="display">Hide</h3>
-          <p>The hiders get a head start to pick a station and find a spot near it. Then they settle in and answer honestly.</p>
-        </div>
-        <div class="card">
-          <div class="num t-blue"><svg viewBox="0 0 24 24"><use href="#meeple" fill="#3255A4" stroke="#2A1F2D" stroke-width="1.3" stroke-linejoin="round"/></svg></div>
-          <h3 class="display">Ask</h3>
-          <p>Seekers spend credits on questions. “Are you within 1 km?” “North or south of me?” The app checks every answer.</p>
-        </div>
-        <div class="card">
-          <div class="num t-sun"><svg viewBox="0 0 24 24"><use href="#meeple" fill="#FFB511" stroke="#2A1F2D" stroke-width="1.3" stroke-linejoin="round"/></svg></div>
-          <h3 class="display">Close in</h3>
-          <p>Each answer shades out part of the map. Ride the subway toward what's left and catch them before time runs out.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="screens">
-    <div class="wrap">
-      <div class="section-head">
-        <h2 class="display">A real map, a real game</h2>
-        <p>Built on OpenStreetMap, with your city's real stations, parks and rivers.</p>
-      </div>
-      <div class="shots">
-        <figure class="shot" style="margin:0">
-          <div class="phone"><img src="img/map.jpg" alt="The seekers' map with ruled-out areas shaded" loading="lazy"></div>
-          <figcaption><b>The map shrinks</b><span>Ruled-out areas are shaded for everyone on the team.</span></figcaption>
-        </figure>
-        <figure class="shot" style="margin:0">
-          <div class="phone"><img src="img/questions.jpg" alt="The question picker showing Ping, Bearing, Warmer and Divide" loading="lazy"></div>
-          <figcaption><b>Pick your question</b><span>Each kind costs credits and cuts the map a different way.</span></figcaption>
-        </figure>
-        <figure class="shot" style="margin:0">
-          <div class="phone"><img src="img/cards.jpg" alt="The hider choosing one of two drawn cards" loading="lazy"></div>
-          <figcaption><b>Hiders fight back</b><span>Answering draws cards: block a question, freeze the seekers, buy time.</span></figcaption>
-        </figure>
-        <figure class="shot" style="margin:0">
-          <div class="phone"><img src="img/welcome.jpg" alt="The welcome screen" loading="lazy"></div>
-          <figcaption><b>Start in a minute</b><span>Share a game code, pick sides, and go.</span></figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="section-head">
-        <h2 class="display">Questions that cut the map</h2>
-        <p>Every question rules out a different shape, so picking the right one is the game.</p>
-      </div>
-      <div class="qs">
-        <div class="q" style="--c:var(--red)"><b>Ping</b><span>Are they within a set distance of you?</span></div>
-        <div class="q" style="--c:var(--blue)"><b>Bearing</b><span>Are they north or south of you, or east or west?</span></div>
-        <div class="q" style="--c:var(--sun)"><b>Warmer</b><span>Walk a bit. Are you closer than before?</span></div>
-        <div class="q" style="--c:var(--teal)"><b>Divide</b><span>Which side of a river, avenue or line are they on?</span></div>
+      <div class="games">
+        <article class="game">
+          <picture class="art "><source srcset="img/art/uptown-dark.svg" media="(prefers-color-scheme: dark)"><img src="img/art/uptown-light.svg" alt="Two teams' claimed neighborhoods on a map of Manhattan"></picture>
+          <h3 class="display">Uptown</h3>
+          <p class="facts">2–6 players · 2–4 hours · New York and San Francisco</p>
+          <p>Two teams race across the city, one neighborhood at a time.</p>
+          <ol>
+            <li>Both teams start together at the bottom of the city.</li>
+            <li>Claim a neighborhood by beating a challenge from a board both teams share.</li>
+            <li>Every claim earns cards: time off your clock, or trouble for the other team.</li>
+            <li>Claim your way to the finish. The fastest time wins.</li>
+          </ol>
+        </article>
+        <article class="game">
+          <picture class="art "><source srcset="img/art/turncoat-dark.svg" media="(prefers-color-scheme: dark)"><img src="img/art/turncoat-light.svg" alt="A group of players around a challenge, one of them two-faced"></picture>
+          <h3 class="display">Inside Job</h3>
+          <p class="facts">4–10 players · about 2 hours · anywhere</p>
+          <p>Do challenges as a group while one or two secret Traitors try to make you fail.</p>
+          <ol>
+            <li>Everyone gets a secret role: Crew Member, Traitor or Detective.</li>
+            <li>Each round, the group does 3 challenges together to earn credits.</li>
+            <li>Spend credits on clues, or on a vote to kick someone out.</li>
+            <li>Find every Traitor before the last round ends.</li>
+          </ol>
+        </article>
       </div>
     </div>
   </section>
@@ -305,12 +296,12 @@
   <section style="padding-top:0">
     <div class="wrap feats">
       <div class="card feat">
-        <div class="num t-teal"><svg viewBox="0 0 24 24" fill="none" stroke="#00838A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
-        <div><h3 class="display">Fair by design</h3><p>Most answers come straight from the hider's real location, so nobody has to take anyone's word for it. And the seekers never see the hider on the map.</p></div>
+        <div class="num t-sun"><svg viewBox="0 0 24 24"><use href="#meeple" fill="#FFB511" stroke="#2A1F2D" stroke-width="1.3" stroke-linejoin="round"/></svg></div>
+        <div><h3 class="display">Start in a minute</h3><p>Pick a game, share the 6-character code, and go. Friends don't need an account.</p></div>
       </div>
       <div class="card feat">
-        <div class="num t-red"><svg viewBox="0 0 24 24" fill="none" stroke="#BE2D3A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg></div>
-        <div><h3 class="display">Safe to play</h3><p>Highways, rail lines and water are off-limits, hosts can add their own zones, and a safety button is always one tap away.</p></div>
+        <div class="num t-red"><svg viewBox="0 0 24 24" fill="none" stroke="#BE2D3A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <div><h3 class="display">Safe to play</h3><p>A safety briefing before every game, and a panic button that ends it and shows your group where you are. Your location is shared only with your game, and only while it's on.</p></div>
       </div>
     </div>
   </section>
@@ -320,9 +311,9 @@
       <div class="beta-card">
         <div>
           <h2 class="display">Play the beta</h2>
-          <p>Haystack is in beta on TestFlight, with playtests running in New York. A public invite link is coming soon. Check back here for it.</p>
+          <p>Haystack is in beta on TestFlight. Get the app, round up a few friends, and pick a game.</p>
         </div>
-        <a class="btn btn-primary" href="#how">See how it plays</a>
+        <a class="btn btn-primary" href="https://testflight.apple.com/join/wmPnb9gT">Get it on TestFlight</a>
       </div>
     </div>
   </div>
@@ -331,7 +322,7 @@
 <footer>
   <div class="wrap bar">
     <span>© 2026 Haystack</span>
-    <span>Map data © OpenStreetMap contributors</span>
+    <span class="footer-links"><a href="privacy/">Privacy</a><a href="terms/">Terms</a><a href="safety/">Safety</a><span>Map data © OpenStreetMap contributors</span></span>
   </div>
 </footer>
 
